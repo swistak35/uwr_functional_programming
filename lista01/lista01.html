@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody><tr>
+	<td>
+	  <table cellpadding="20">
+	    <tbody><tr>
+	      <td>
+		<b>
+		  Programowanie funkcyjne, II UWr, 2013/14<br>
+		  Lista zadań nr 1 
+		</b> 
+	      </td>
+	    </tr> 
+	  </tbody></table>
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  <table cellpadding="20">
+	    <tbody><tr>
+	      <th>
+		Część I (na 10.10.2013)
+	      </th>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 1 (1p.)</h4>
+		<ul>
+		  <li>
+		    Dla każdego z
+		    typów <b>int</b>, <b>float</b>, <b>char</b>, <b>string</b>,
+		    <b>bool</b> oraz <b>unit</b> napisz wyrażenie tego typu i
+		    wykorzystaj ewaluator OCamla (program <b>ocaml</b>, z linii poleceń
+		    lub zintegrowany z emacsem) do obliczenia jego wartości.
+		  </li>
+		  <li>
+		    Skompiluj (i wykonaj) przykładowy
+		    program <a href="http://ii.uni.wroc.pl/%7Edabi/courses/PF13/fib.ml">fib.ml</a>
+		    za pomocą kompilatorów <b>ocamlc</b>
+		    i <b>ocamlopt</b>
+		    (cf. <a href="http://caml.inria.fr/pub/docs/manual-ocaml/index.html">Ocaml
+		    Manual, Part III</a>). W przypadku
+		    kompilatora <b>ocamlc</b>, uzyskaj plik
+		    zawierający bytecode dla maszyny ZINC, wykonywalny
+		    za pomocą interpretera <b>ocamlrun</b>, a także
+		    bezpośrednio wykonywalny plik. Porównaj czas
+		    wykonania plikow otrzymanych za pomocą obu
+		    kompilatorów.
+		  </li>
+		</ul>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 2 (1p.)</h4>
+		Czy następujące wyrażenia są dobrze typowane? Sprawdź ich typy i
+		wartości w ewaluatorze.
+		<ul>
+		  <li><b>if true then 4 else 5</b></li>
+		  <li><b>if false then 1 else 3.5</b></li>
+		  <li><b>4.75 + 2.34</b></li>
+		  <li><b>false || "ab"&gt;"cd"</b></li>
+		  <li><b>if true then ()</b></li>
+		  <li><b>if false then () else 4</b></li>
+		  <li><b>let x = 2 in x^"aa"</b></li>
+		  <li><b>let y = "abc" in y^y</b></li>
+		  <li><b>(fun x -&gt; x.[1]) "abcdef"</b></li>
+		  <li><b>(fun x -&gt; x) true</b></li>
+		  <li><b>let x = [1;2] in x@x</b></li>
+		  <li><b>let rec f f = f+f in f 42</b></li>
+		</ul>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 3 (1p.)</h4>
+		Zidentyfikuj zmienne wolne i związane w wyrażeniach:
+		<ul>
+		  <li><b>let x = x in x^x</b></li>
+		  <li><b>let x = 10. in let y = x**2. in y*.x</b></li>
+		  <li><b>let x = 1 and y = x in x + y</b></li>
+		  <li><b>let x = 1 in fun y z -&gt; x*y*z</b></li>
+		</ul>
+	      </td>
+	    </tr>
+	    
+	    <tr>
+	      <td>
+		<h4>Zadanie 4 (1p.)</h4>  Jaka jest wartość
+		wyrażenia <b>f 1</b> w środowisku otrzymanym po
+		przetworzeniu następujących definicji:
+		<p><b>
+		  let m = 10;;<br>
+		  let f x = m + x;;<br>
+		  let m = 100;;
+		</b></p>
+		i dlaczego?
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 5 (1p.)</h4>  Napisz wyrażenie, które
+		przekonuje, ze Ocaml używa gorliwej ewaluacji.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 6 (1p.)</h4>  Anonimową funkcję dodawania
+		dwóch liczb całkowitych możemy zapisać za pomocą
+		wyrażenia <b>fun x y -&gt; x + y</b>. Zdefiniuj tę
+		funkcję nadając jej identyfikator <b>plus</b> na 3
+		różne (składniowo) sposoby. Następnie korzystając z
+		jednej z tych definicji napisz funkcję <b>plus_3</b>
+		dodawania 3 do dowolnej liczby całkowitej.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 7 (1p.)</h4>  Jaki jest typ
+		wyrażenia <b>fun x -&gt; x</b>? Napisz wyrażenie
+		anonimowe reprezentujące funkcję identycznościową,
+		którego typem w OCamlu jest typ <b>int -&gt; int</b>.
+		Napisz wyrażenia typów <b>('a -&gt; 'b) -&gt; ('c
+		-&gt; 'a) -&gt; 'c -&gt; 'b</b> oraz <b>'a -&gt;
+		'b</b>.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 8 (1p.)</h4>  Napisz funkcję definiującą
+		złożenie dwóch funkcji oraz funkcję iterowania
+		wywołania funkcji wykorzystującą funkcję złożenia. Za
+		pomocą iteracji zdefiniuj mnożenie (skorzystaj z
+		faktu, ze operator infiksowy <b>+</b> może być
+		potraktowany jak funkcja dwóch argumentów) i
+		potęgowanie (przy okazji zdefiniuj odpowiedni operator
+		infiksowy).
+	      </td>
+	    </tr>
+	  </tbody></table>
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  <table cellpadding="20">
+	    <tbody><tr>
+	      <th colspan="2">Część II (na 17.10.2013)
+	      </th>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 9 (6p.)</h4> 
+		Strumień (tj. nieskończony ciąg) elementów typu <b>t</b>
+		możemy reprezentować za pomocą funkcji typu <b>int -&gt; t</b> w taki
+		sposób, że dla dowolnej takiej funkcji <b>s</b>, <b>s 0</b>
+		oznacza pierwszy element strumienia, <b>s 1</b> następny, itd.
+		Używając powyższej reprezentacji zdefiniuj następujące funkcje na
+		strumieniach (funkcje te powinny być polimorficzne, tj. powinny
+		działać na strumieniach o dowolnych elementach):
+		<ul>
+		  <li><b>hd, tl</b> - funkcje zwracające odpowiednio głowę i ogon strumienia</li>
+		  <li><b>add</b> - funkcja dodawania zadanej stałej do każdego
+		    elementu strumienia i zwracająca powstały w ten sposób strumień</li>
+		  <li><b>map</b> - funkcja, która dla zadanej operacji 1-argumentowej
+		    przetwarza elementy zadanego strumienia za pomocą tej operacji i
+		    zwraca powstały w ten sposób nowy strumień (tak, jak <b>map</b> na
+		    listach skończonych)</li>
+		  <li><b>map2</b> - jak wyżej, ale dla zadanych: funkcji 2-argumentowej
+		    i 2 strumieni</li>
+		  <li><b>replace</b> - funkcja, która dla zadanego indeksu <b>n</b>,
+		    wartości <b>a</b> i strumienia
+		    <b>s</b> zastępuje co <b>n</b>-ty element strumienia <b>s</b>
+		    przez wartość <b>a</b> i zwraca powstały w ten sposób strumień</li>
+		  <li><b>take</b> - funkcja, która dla zadanego indeksu <b>n</b> i
+		    strumienia <b>s</b> tworzy nowy strumień złożony z
+		    co <b>n</b>-tego elementu strumienia <b>s</b></li>
+		  <li><b>fold</b> - funkcja, która dla zadanej
+		    funkcji <b>f:'a-&gt;'b-&gt;'a</b>, wartości początkowej <b>a:'a</b> i
+		    strumienia <b>s</b> elementów typu <b>'b</b> tworzy nowy
+		    strumień, którego każdy element jest wynikiem "zwinięcia"
+		    początkowego segmentu strumienia <b>s</b> aż do bieżącego elementu
+		    włącznie za pomocą funkcji <b>f</b>, tj. w strumieniu wynikowym
+		    element o indeksie <b>n</b> ma wartość <b>(... (f (f a s_0)
+		      s_1)... s_n)</b>
+		  </li>
+		  <li><b>tabulate</b> - funkcja tablicowania strumienia, której
+		    wartością powinna być lista elementów strumienia leżąca w zadanym
+		    zakresie indeksów.</li>
+		</ul>
+		Zdefiniuj przykładowe strumienie i przetestuj implementację.
+		<br><br>
+		W definicji funkcji <b>tabulate</b> wykorzystaj możliwość definiowania
+		parametrów opcjonalnych dla funkcji (niech początek zakresu indeksów
+		będzie opcjonalny i domyślnie równy <b>0</b>).
+		<b>Przykład.</b>
+		Pisząc <b>let f ?(x=0) y = x + y</b> deklarujemy, że pierwszy
+		argument funkcji <b>f</b> o etykiecie <b>x</b> jest opcjonalny, a jego
+		wartość domyślna wynosi <b>0</b>. Funkcję <b>f</b> można zatem wywołać za
+		pomocą wyrażenia <b>f 3</b> (= <b>3</b>) lub jawnie podając wartość
+		parametru opcjonalnego, za pomocą składni <b>f ~x:42 3</b> (= <b>45</b>).  
+	      </td>
+	    </tr>
+	  </tbody></table>
+	</td>
+      </tr>
+    </tbody></table>
+  
+
+</body></html>

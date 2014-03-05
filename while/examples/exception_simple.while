@@ -1,0 +1,17 @@
+# Testing simple exceptions
+# It should print: 1, 1, 1, 1.
+begin
+	var x1 	:= 1;
+	var x2 	:= 2;
+	var x3 	:= 3;
+
+	write x1;
+	try {
+		write x1;
+		raise SimpleException;
+		write x0;
+	} rescue SimpleException with {
+		write x1;
+	}
+	write x1;
+end

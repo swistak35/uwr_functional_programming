@@ -1,0 +1,29 @@
+# More complex example.
+# It should print: 1, 1, 1, 1
+# And program should end with "SecondException"
+begin
+	var x0 	:= 0;
+	var x1 	:= 1;
+	var xn 	:= 4;
+
+	proc excRaiser() is begin
+		write x1;
+		raise SimpleException;
+		write x0;
+	end
+	
+	write x1;
+	try {
+		write x1;
+		call excRaiser();
+		write x0;
+	} rescue SimpleException with {
+		write x1;
+		raise SecondException;
+		write x0;
+	} rescue SecondException with {
+		# SecondException *shouldn't* be rescued here
+		write x0;
+	}
+	write x1;
+end

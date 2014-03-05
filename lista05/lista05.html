@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <td>
+		    <b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		      Lista zadań nr 5 </b> 
+		  </td>
+		</tr> 
+	    </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część I (na 14.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 1 (4p.)</h4>
+		    Zdefiniuj typ do reprezentacji leniwych nieskończonych ciągów
+		    elementów dowolnego typu (strumieni)
+		    tak, jak na wykładzie. Następnie:
+		    <ul>
+		      <li> zdefiniuj strumień przybliżający wartość
+			liczby pi z rosnącą dokładnością, korzystając
+			ze wzoru Leibniza: &#960;<tt>/4 = 1 - 1/3 +
+			1/5 - 1/7 + ... </tt>
+		      </li>
+		      <li> napisz funkcję przekształcającą dowolny strumień <tt>x<sub>1</sub>,x<sub>2</sub>,x<sub>3</sub>,...</tt> 
+			w strumień postaci
+			<tt>f x<sub>1</sub> x<sub>2</sub> x<sub>3</sub>, 
+			  f x<sub>2</sub> x<sub>3</sub> x<sub>4</sub>, f x<sub>3</sub> x<sub>4</sub> x<sub>5</sub>,...</tt>, 
+			dla dowolnej funkcji f. 
+		      </li>
+		      <li> korzystając z powyższych definicji i transformacji Eulera:<br>
+			<tt>F x y z = z - (y-z)<sup>2</sup>/(x-2y+z)</tt><br>
+			utwórz nowy strumień, szybciej zdążający do liczby &#960;.
+		      </li>
+		    </ul>
+		    Napisz te same definicje używając konstrukcji <tt>lazy </tt> i <tt>force </tt> z modułu Lazy. Dlaczego
+		    <tt>lazy </tt> jest specjalną konstrukcją języka, a nie funkcją?
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 2 (2p.)</h4>
+		    Napisz funkcję przeszukiwania zbioru stanów wszerz, typu 
+		    <tt>('a -&gt; 'a list) -&gt; 'a -&gt; 'a llist</tt> (przy wybranej przez siebie reprezentacji list leniwych 
+		    <tt>'a llist</tt>), a następnie wykorzystaj ją do rozwiązania problemu n hetmanów.
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część II (na 21.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 3 (2p.)</h4>  Zmodyfikuj zaproponowane
+		    na wykładzie rozwiązanie problemu n hetmanów, tak
+		    by pozbyć się leniwej listy zawierającej wszystkie
+		    możliwe ustawienia hetmanów, z której dopiero
+		    wybiera się rozwiązania dobre. Algorytm, o który
+		    chodzi wygląda mniej więcej tak:
+		    <ul>
+		      <li>jeżeli bieżące ustawienie jest rozwiązaniem,
+                          to zwróć kolekcję zawierającą to rozwiązanie;
+		      </li><li>w przeciwnym razie, zsumuj kolekcje
+			rozwiązań otrzymane przez dostawienie hetmana
+			na wszystkie legalne pozycje w kolejnej
+			kolumnie i powtórzenie algorytmu dla
+			każdego tak otrzymanego ustawienia.
+		    </li></ul>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 4 (6p.)</h4>
+		    <a href="http://pl.wikipedia.org/wiki/Kodowanie_Huffmana">Kodowanie Huffmana</a> 
+		    jest prostą metodą bezstratnej kompresji.
+		    Załóżmy, że dana jest lista asocjacyjna złożona z par (symbol, częstość występowania).
+		    Zaimplementuj statyczny algorytm kodowania i dekodowania napisów (czyli ciągów symboli z listy) 
+		    według następujących zasad:
+		    <ul>
+		      <li>
+			Drzewo kodowe jest drzewem binarnym, w którego liściach znajdują
+			się symbole wraz z ich częstościami, a w każdym węźle znajduje się suma
+			częstości poddrzew lewego i prawego. Zdefiniuj typ takich drzew.
+		      </li>
+		      <li>
+			Korzystając z listy częstości zbuduj drzewo Huffmana: Mając daną
+			listę drzew, wybieramy z niej dwa drzewa o najmniejszych częstościach
+			(ten wybór nie musi być jednoznaczny).
+			Usuwamy te drzewa z listy, łączymy je w jedno drzewo i wstawiamy do
+			listy. Kontynuujemy aż do otrzymania listy jednoelementowej (czyli
+			drzewa kodowego).
+			Początkowa lista składa się z liści otrzymanych z listy częstości.
+			Łączenie dwóch poddrzew polega na utworzeniu nowego drzewa
+			o częstości będącej sumą częstości obu poddrzew.
+		      </li> 
+		      <li>
+			Kodem symbolu jest zapis ścieżki od korzenia drzewa kodowego do
+			liścia zawierającego ten symbol, gdzie ścieżka jest reprezentowana jako
+			ciąg zer i jedynek, w którym 0 oznacza zejście do lewego poddrzewa, a 1
+			zejście do prawego poddrzewa (lub na odwrót, ale jednakowo dla
+			wszystkich symboli). Kod napisu to ciąg kodów wszystkich symboli tego
+			napisu.
+		      </li>
+		      <li>
+			Dekodowanie jest procesem odwrotnym: dla danego ciągu zer i jedynek kodującego pewien napis,
+			wędrujemy po drzewie według kierunków zapisanych w kodzie, zaczynając od korzenia. Gdy dotrzemy do liścia,
+			odczytujemy umieszczony w nim symbol i odrzucamy wykorzystany dotąd fragment kodu. 
+			Następnie dla pozostałego fragmentu kodu wracamy do korzenia i odszukujemy kolejne symbole, aż 
+			do wyczerpania kodu.
+		      </li>
+		    </ul>
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

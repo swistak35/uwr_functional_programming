@@ -1,0 +1,9 @@
+
+## TODO:
+
+* mutual recursion (2.46 nn, 5.3 progM)
+* utils.ml
+* automated testing
+* vm
+* vm compiler
+* vm debugger

@@ -1,0 +1,23 @@
+# Performance test.
+# Times on my computer:
+# 	While 				-> 15.4s
+#	Ruby (square.rb)	-> 0.35s
+# I'm aware that ruby probably is optimizing such simple code.
+begin
+	var n := 200;
+	var i := 1;
+	var sum := 0;
+	proc dodajkwadrat(c) is begin
+		var tmp := 1;
+		while tmp <= c*c do begin
+			sum := sum + 1;
+			tmp := tmp + 1;
+		end
+	end
+
+	while i <= n do begin
+		call dodajkwadrat(i);
+		i := i + 1;
+	end
+	write sum;
+end

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Programowanie funkcyjne</title>    
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style></head><body>
+    <table>
+      <tbody>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <td>
+		    <b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		      Lista zadań nr 7</b> 
+		  </td>
+		</tr> 
+	    </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część I (na 28.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 1 (4p.)</h4>  
+		    <ol>
+		      <li> Zdefiniuj operator
+			stałopunktowy <tt>fix</tt>
+			typu <tt>(('a-&gt;'b)-&gt;'a-&gt;'b)-&gt;'a-&gt;'b</tt>,
+			który pozwoli na wyznaczanie punktu stałego
+			funkcji typu <tt>('a-&gt;'b)-&gt;'a-&gt;'b)</tt>, a co
+			za tym idzie na definiowanie rekurencyjnych
+			funkcji bez użycia konstrukcji <tt>let
+			rec</tt>. Np. silnię można wyrazić przy
+			użyciu <tt>fix</tt> następująco:
+			<pre>			  fix (fun f -&gt; fun n -&gt; if n = 0 then 1 else n * (f (n-1)))
+			</pre>
+		      </li><li>
+			Nie używając rekursji (tj. konstrukcji <tt>let
+			rec</tt>) zdefiniuj funkcję obliczającą silnię
+			(użyj referencji).  W podobny sposób zdefiniuj
+			funkcję <tt>fix</tt>.
+		    </li></ol>
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część II (na 05.12.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 2 (2p.)</h4> Rozważmy modyfikowalne listy zdefiniowane następująco:
+		    <pre>		      type 'a list_mutable = LMnil | LMcons of 'a * 'a list_mutable ref
+		    </pre>
+		    Zaimplementuj konkatenację list typu <tt>'a list_mutable</tt> na dwa sposoby:
+		    <ol>
+		      <li> funkcja <tt>concat_copy</tt> buduje listę wynikową kopiując pierwszy argument;
+		      </li><li> funkcja <tt>concat_share</tt> buduje listę wynikową bez kopiowania argumentów.
+		    </li></ol>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 3 (4p.)</h4>  Technika memoizacji
+		    pozwala wykorzystać cechy imperatywne języka w
+		    celu zwiększenia efektywności działania funkcji,
+		    która sama jest czysto funkcyjna, tj. kolejne
+		    wywołanie takiej funkcji dla tego samego argumentu
+		    zwróci tę samą wartość. Memoizacja polega na
+		    zapamiętywaniu wartości wywołań funkcji dla
+		    konkretnych argumentów w pewnej strukturze danych,
+		    i na wyszukiwaniu potrzebnych wartości przy
+		    kolejnych wywołaniach tej funkcji.
+
+		    Aby umożliwić memoizację dowolnej
+		    jednoargumentowej funkcji, zaimplementuj
+		    następujący schemat:
+		    <ul>
+		      <li>
+			zdefiniuj typ polimorficzny służący jako tablica wartości
+			wywołań dowolnej funkcji;
+		      </li>
+		      <li>
+			napisz funkcję tworzenia pustej tablicy;
+		      </li>
+		      <li>
+			napisz funkcję wyszukiwania w tablicy wartości funkcji dla
+			zadanego argumentu;
+		      </li>
+		      <li>
+			napisz funkcję dopisującą do tablicy nową wartość wywołania funkcji.
+		      </li>
+		    </ul>
+		    <br>
+		    Wykorzystaj ten schemat do memoizacji funkcji wyznaczającej kolejne
+		    liczby Fibonacciego: napisz funkcję <tt>fib : int -&gt; int</tt> według
+		    standardowej definicji oraz funkcję <tt>fib_memo : int -&gt; int</tt> wykorzystującą
+		    memoizację.  Porównaj czasy wykonania obu funkcji.
+		    <br>
+		    Czy funkcja <tt>fib_memo</tt> spełnia Twoje oczekiwania w kwestii
+		    efektywności? Zmodyfikuj schemat memoizacji dla tej funkcji, aby
+		    maksymalnie wykorzystać tę technikę.
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 4 (2p.)</h4>  Napisz
+		    funkcję <tt>fresh</tt> typu <tt>string -&gt;
+		    string</tt> generującą świeże nazwy, której
+		    kolejne wywołania mają następujący efekt:
+		    <pre># fresh "x";;
+- : string = "x1"
+# fresh "x";;
+- : string = "x2"
+# fresh "x";;
+- : string = "x3"
+# fresh "y";;
+- : string = "y4"
+		    </pre>
+		    itd... oraz funkcję <tt>reset</tt> typu <tt>int -&gt; unit</tt>, która ustawia początkową wartość
+		    generowanego indeksu dla następnych wywołań funkcji <tt>fresh</tt>, np.
+		    <pre># fresh "x";;
+- : string = "x1"
+# fresh "x";;
+- : string = "x2"
+# reset 5;;
+- : unit = ()
+# fresh "x";;
+- : string = "x6"
+# fresh "x";;
+- : string = "x7"
+		    </pre>   
+		    Uwaga! Funkcje nie mogą wykorzystywać żadnych zmiennych globalnych.  
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 5 (2p.)</h4>
+		    Rozwiąż problem Józefa, tj. zadanie 4 z listy kontrolnej do wykładu 6.
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

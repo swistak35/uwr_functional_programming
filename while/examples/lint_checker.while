@@ -1,0 +1,28 @@
+# Interpreter: should end with some runtime error ("Variable `z` is not defined").
+# Syntax checker: it should print 8 errors/warnings.
+begin
+	var x := 5;
+	var y := z;
+	proc p() is begin
+		var y := x;
+		proc p() is begin
+			write z;
+		end
+
+		call p2();
+	end
+	proc pn(n) is begin
+		write n;
+	end
+
+	try {
+		raise FirstException;
+		raise SecondException;
+	}
+	rescue SecondException with {
+		call pn();
+		call pn(0);
+		call p();
+		call p(0);
+	}
+end

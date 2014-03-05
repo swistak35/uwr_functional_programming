@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <td>
+		    <b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		      Lista zadań nr 4 </b> 
+		  </td>
+		</tr> 
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część I (na 07.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 1 (2p.)</h4>  Napisz funkcję
+		    rozstrzygającą czy dana lista jest palindromem,
+		    ale taką, która wykonuje co najwyżej [n/2] wywołań
+		    rekurencyjnych, gdzie n jest nieznaną długością
+		    listy (nie potrzeba i nie wolno jej liczyć).
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 2 (2p.)</h4>  Rozważmy typ danych dla
+		    drzew binarnych, zdefiniowany następująco:
+		    <pre>		    <code>
+		      type 'a btree = Leaf 
+		                    | Node of 'a btree * 'a * 'a btree
+		    </code>
+		    </pre>
+		    Mówimy, że drzewo jest zbalansowane, jeśli dla
+		    każdego węzła v liczby węzłów w lewym i prawym
+		    poddrzewie zakorzenionym w v różnią się co
+		    najwyżej o 1.
+		    <ol>
+		      <li>Napisz efektywną funkcję sprawdzającą czy
+		      dane drzewo jest zbalansowane.
+		      </li><li>Napisz funkcję, która dla zadanej listy
+		      etykiet tworzy zbalansowane drzewo, dla którego
+		      tę listę można otrzymać przechodząc je w
+		      porządku preorder.
+		    </li></ol>
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część II (na 14.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 3 (2p.)</h4>  Napisz możliwie
+		    efektywne funkcje przejścia wszerz oraz przejścia
+		    w głąb (preorder) dla obu reprezentacji drzew
+		    wielokierunkowych podanych na wykładzie (zadanie 5
+		    z listy kontrolnej do wykładu 4).
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		  <h4>Zadanie 4 (6p.)</h4>  Zdefiniuj typ służący do
+		  reprezentacji formuł rachunku zdań składających się
+		  ze zmiennych zdaniowych, negacji, koniunkcji i
+		  alternatywy.
+		  <ol>
+		    <li>Napisz funkcję sprawdzającą, czy dana formuła
+		      jest tautologią. W tym celu należy generować
+		      kolejne wartościowania zmiennych zdaniowych
+		      występujących w danej formule i sprawdzać dla
+		      nich wartość formuły. W przypadku, gdy formuła
+		      nie jest tautologią, funkcja powinna, oprócz
+		      tej informacji, podać jedno z wartościowań, dla
+		      których formuła nie jest prawdziwa.
+		    </li><li> Napisz funkcję, która przekształca zadaną
+		      formułę w formułę jej równoważną w negacyjnej
+		      postaci normalnej, tj. w której negacja
+		      występuje tylko przy zmiennych zdaniowych.
+		    </li><li>Napisz funkcję, która przekształca zadaną
+		      formułę w formułę jej równoważną w koniunkcyjnej
+		      postaci normalnej.  
+		    </li><li>Napisz funkcję sprawdzającą (syntaktycznie),
+		      czy zadana formuła jest tautologią, korzystając
+		      z faktu, że każdą formułę można przedstawić w
+		      koniunkcyjnej postaci normalnej.
+		    </li><li>Napisz funkcję, która przekształca zadaną
+		      formułę w formułę jej równoważną w dyzjunkcyjnej
+		      postaci normalnej.
+		    </li><li>Napisz funkcję sprawdzającą (syntaktycznie),
+		      czy zadana formuła jest sprzeczna, korzystając z
+		      faktu, że każdą formułę można przedstawić w
+		      dyzjunkcyjnej postaci normalnej.
+		  </li></ol>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 5 (2p.)</h4> Funkcja jest napisana w
+		    stylu przekazywania kontynuacji
+		    (continuation-passing style, CPS), jeżeli
+		    przyjmuje dodatkowy argument funkcyjny zwany
+		    kontynuacją, który reprezentuje całą resztę
+		    obliczeń jakie mają zostać przeprowadzone po
+		    powrocie z tej funkcji. W konsekwencji, funkcje w
+		    CPS-ie zwracają wynik wywołując swoją kontynuację,
+		    a wszystkie wywołania w programie w CPS-ie są
+		    ogonowe. Na przykład, funkcja licząca silnię
+		    napisana w CPS-ie wygląda następująco:
+		    <pre>		    <code>
+		      let rec fact_cps n k =
+		        if n = 0 
+		        then k 1
+		        else fact_cps (n-1) (fun v -&gt; k (n*v))
+		    </code>
+		    </pre>
+		    Kontynuacja początkowa przekazana
+		    funkcji <code>fact_cps</code> mówi co zrobić z
+		    wynikiem obliczenia silni zadanej liczby. Typowe
+		    wywołanie funkcji <code>fact_cps</code> dostaje
+		    identyczność jako kontynuację początkową (gdy
+		    silnia jest obliczona, wystarczy ją zwrócić):
+		    <pre>		      <code>
+			let fact n =
+		          fact_cps n (fun v -&gt; v)
+		      </code>
+		    </pre> Dla drzew binarnych z zadania 2, napisz
+		    funkcję <code>prod : int btree -&gt; int</code>,
+		    która liczy iloczyn wszystkich wartości w
+		    drzewie. Zapisz tę funkcję w CPS-ie, a następnie
+		    zmodyfikuj otrzymaną funkcję tak by w przypadku
+		    napotkania wartości 0 funkcja wykonała bezpośredni
+		    skok do miejsca swego wywołania, bez krokowego
+		    powracania z rekursji.
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

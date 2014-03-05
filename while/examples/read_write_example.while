@@ -1,0 +1,7 @@
+# Testing IO
+begin
+	var x := 3;
+	write x;
+	read x;
+	write x;
+end;

@@ -1,0 +1,12 @@
+# Testing error recovery
+# It should print more than one syntax error.
+skip
+skip;
+skip
+skip;
+
+begin
+	var x := 3
+	var y := 2;
+	skip;
+end;

@@ -1,0 +1,13 @@
+# Calculates factorial of 4
+# It should print 24.
+begin
+	var n 	:= 4;
+	var res := 1;
+	
+	while 1 <= n do {
+		res := res * n;
+		n := n - 1;
+	}
+
+	write res;
+end

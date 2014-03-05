@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <td>
+		    <b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		      Lista zadań nr 3</b> 
+		  </td>
+		</tr> 
+	    </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część I (na 24.10.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 1 (2p.)</h4>  Załóżmy, że wielomiany o
+		    współczynnikach rzeczywistych są reprezentowane
+		    jako listy współczynników od najwyższej potęgi do
+		    najniższej, np. [1.;0.;-1.;2.] oznacza wielomian
+		    x<sup>3</sup>-x+2. Napisz funkcję, która dla
+		    zadanej listy reprezentującej wielomian i dla
+		    danego argumentu x typu float, obliczy
+		    wartość tego wielomianu w punkcie x w oparciu o
+		    schemat Hornera. Napisz tę funkcję w dwóch
+		    wersjach: raz za pomocą rekursji ogonowej, a
+		    następnie bez jawnego użycia rekursji, korzystając
+		    z odpowiedniej funkcji bibliotecznej modułu List.
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 2 (2p.)</h4>  Załóżmy, że zmieniamy
+		    reprezentację wielomianu tak, by współczynniki w
+		    liście były uszeregowane od najniższej potęgi do
+		    najwyższej (wtedy [1.;0.;-1.;2.] oznacza wielomian
+		    2x<sup>3</sup>-x<sup>2</sup>+1). Zmodyfikuj obie
+		    funkcje z Zadania 1 tak, by poprawnie liczyły
+		    wartość wielomianu w tej reprezentacji (rekursja w
+		    rozwiązaniu z jawną rekursją nie musi być ogonowa).
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 3 (2p.)</h4>  Dla reprezentacji
+		    wielomianu z Zadania 2 napisz funkcję (ponownie w
+		    dwóch wersjach) obliczającą pochodną wielomianu
+		    (np. dla listy [1.;0.;-1.;2.]  funkcja ta powinna
+		    utworzyć listę [0.;-2.;6.]).
+		  </td>
+		</tr>
+	    </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część II (na 07.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 4 (6p.)</h4>  Niech macierz kwadratowa
+		    n x n będzie reprezentowana wierszami jako lista
+		    list.
+		    <!--
+		    , np. lista l
+		    = [[1.;2.;3.];[4.;5.;6.];[7.;8.;9.]]
+		    reprezentuje macierz
+		    <table style="border-width: 1px; border-left: 1px solid; border-right: 1px solid; margin-top: 3px;">
+		      <tbody>
+			<tr>
+			  <td style="border-width: 1px; border-top: 1px solid;">1</td>
+			  <td>2</td>
+			  <td style="border-width: 1px; border-top: 1px solid;">3</td>
+			</tr>
+			<tr>
+			  <td>4</td>
+			  <td>5</td>
+			  <td>6</td>
+			</tr>
+			<tr>
+			  <td style="border-width: 1px; border-bottom: 1px solid;">7</td>
+			  <td>8</td>
+			  <td style="border-width: 1px; border-bottom: 1px solid;">9</td>
+			</tr>
+		    </tbody>
+		    </table>
+		    -->
+		    <ol>
+		      <li>Napisz funkcję sprawdzającą, czy dana lista
+			jest poprawną reprezentacją macierzy
+			kwadratowej.
+		      </li>
+		      <li>Napisz funkcję, która dla zadanej macierzy
+			kwadratowej i liczby naturalnej n wyznacza
+			n-tą kolumnę macierzy.
+		      </li>
+		      <li>Wykorzystaj funkcję z poprzedniego punktu do
+			napisania funkcji transpozycji macierzy,
+			np. transpozycja macierzy l jest
+			reprezentowana jako lista
+			[[1.;4.;7.];[2.;5.;8.];[3.;6.;9.]].
+		      </li>
+		      <li>Napisz funkcję zip, która dla danych dwóch
+			list równej długości tworzy listę złożoną z
+			par elementów obu list znajdujących się na
+			tych samych pozycjach, np. zip [1.;2.;3.]
+			["a";"b";"c"] = [(1.,"a");(2.,"b");(3.,"c")].
+		      </li> 
+		      <li>Korzystając z funkcji zip, napisz funkcję
+			zipf, która dla danych dwóch list typów'a list
+			i 'b list i funkcji dwuargumentowej f typu 'a
+			-&gt; 'b -&gt; 'c tworzy listę złożoną z
+			wartości funkcji f na argumentach z obu list
+			położonych na tych samych pozycjach, np. zipf
+			( +. ) [1.;2.;3.] [4.;5.;6.] = [5.;7.;9.].
+		      </li> 
+		      <li>Wykorzystując funkcję zipf napisz funkcję
+			mult_vec, która oblicza iloczyn zadanego
+			wektora i zadanej macierzy, np. mult_vec
+			[1.;2.] [[2.;0.];[4.;5.]] = [10.;10.].
+		      </li>
+		      <li>Korzystając z funkcji mult_vec napisz
+			funkcję mnożenia dwóch macierzy kwadratowych
+			tego samego rozmiaru.
+		      </li>
+		    </ol>
+		      <b>Uwaga:</b> Wykorzystaj funkcje biblioteczne
+		      operujące na listach tak by Twoje rozwiązania
+		      były zwięzłe.
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 5 (4p.)</h4> Napisz funkcję, która dla
+		    zadanej permutacji elementów dowolnego typu 'a, na
+		    którym zdefiniowany jest pewien porządek liniowy,
+		    znajduje kolejną - w porządku leksykograficznym -
+		    permutację tych samych elementów, np. dla
+		    permutacji (1,2,4,3) funkcja powinna zwrócić
+		    permutację (1,3,2,4), a dla permutacji (a,c,b)
+		    wynikiem powinna być permutacja (b,a,c). W
+		    przypadku, w którym zadana permutacja jest
+		    największa, funkcja powinna zwracać permutację
+		    najmniejszą. Do reprezentowania permutacji użyj
+		    list, ale w porządku odwróconym, tj. w przykładzie
+		    powyżej funkcja dla argumentu [3;4;2;1] powinna
+		    dać odpowiedź [4;2;3;1], a dla ['b';'c';'a'] -
+		    odpowiedź ['c';'a';'b']. Wykorzystaj tę funkcję do
+		    napisania funkcji generującej wszystkie permutacje
+		    danej listy.
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 6 (2p.)</h4>  Pewnego razu powiedziano
+		    dwóm logikom P i S, że wybrano dwie liczby
+		    naturalne x i y takie, że 1 &lt; x &lt; y oraz x+y &lt;
+		    100. Co więcej, S otrzymał informację o wartości
+		    x+y, a P o wartości x*y. Po chwili P i S odbyli
+		    następującą rozmowę:<br><br> P: Nie potrafię
+		    powiedzieć jakie to liczby.<br>  S: Wiedziałem o
+		    tym.<br>  P: A to w takim razie już potrafię.<br>  S: Ja
+		    już też.<br><br>  Napisz program, który wykorzysta
+		    powyższy dialog do znalezienia liczb x i y.
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

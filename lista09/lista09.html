@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>    
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <td>
+		    <b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		      Lista zadań nr 9</b>
+		  </td>
+		</tr> 
+	    </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część I (na 23.01.2014)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 1 (0p.)</h4>
+		    Zapoznaj się ze środowiskiem Dr Racket. Przeczytaj
+		    <a href="http://docs.racket-lang.org/quick/index.html">wprowadzenie</a>,
+		    przejrzyj rozdziały 1-4
+		    <a href="http://docs.racket-lang.org/guide/index.html">przewodnika</a>.
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 2 (2p.)</h4> Napisz
+		    procedurę <tt>count-change</tt> obliczającą liczbę
+		    sposobów rozmieniania danej kwoty na
+		    monety. Procedura bierze jako argument kwotę
+		    (nieujemną liczbę całkowitą) oraz listę nominałów
+		    monet (listę liczb całkowitych).  Przykładowo,
+		    wartością wyrażenia
+		    <pre>(count-change 100 '(1 5 10 25 50))</pre> 
+		    powinno być <tt>292</tt>.
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 3 (2p.)</h4>  Napisz procedurę, która
+		    dla zadanej listy zlicza liczbę atomów na tej
+		    liście. Elementami listy mogą być liczby, symbole,
+		    napisy, wartości logiczne oraz pary (w tym
+		    listy). Atomami nazywamy wszystkie obiekty, które
+		    nie są parami.
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część II (na 30.01.2014)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 4 (6p.)</h4>  Ruchoma konstrukcja
+		    składa się z dwóch ramion (prawego i
+		    lewego). Każde ramię ma określoną długość, a na
+		    jego końcu zawieszony jest ciężarek lub inna
+		    ruchoma konstrukcja. Konstrukcje tego typu
+		    reprezentujemy za pomocą par:
+		    <pre>		      (define (mk-mobile left right) (cons left right))
+		      (define (mk-branch length struct) (cons length struct))
+		    </pre>
+		    Ciężarek reprezentujemy jako liczbę, która określa jego wagę.
+		    <ul>
+		      <li>
+			Napisz
+			selektory <tt>left-branch,right-branch</tt>
+			dla konstrukcji (zwracające odp. lewe i prawe
+			ramię), oraz <tt>branch-length,
+			branch-struct</tt> dla ramienia (zwracające
+			odp. długość ramienia i strukturę/ciężar
+			zawieszony na jego końcu).</li>
+		      <li>
+			Używając selektorów napisz procedurę
+			obliczającą całkowitą wagę konstrukcji, a
+			także procedurę sprawdzającą, czy konstrukcja
+			jest zbalansowana.  Konstrukcja jest
+			zbalansowana, gdy iloczyn długości ramienia i
+			ciężaru na nim zawieszonego jest taki sam dla
+			obu ramion, oraz gdy każda z podkonstrukcji
+			wiszących na ramionach jest również
+			zbalansowana.</li>
+		      <li>Napisz procedurę rysującą zadaną konstrukcję, korzystając z
+			bibliotek Racketa.</li>
+		    </ul>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 5 (6p.)</h4>  Napisz
+		    procedurę <tt>deriv</tt> wykonującą symboliczne
+		    różniczkowanie wyrażeń algebraicznych, dla której
+		    argumentami są: wyrażenie algebraiczne zbudowane
+		    ze zmiennych i stałych liczbowych za pomocą
+		    dodawania i mnożenia, oraz zmienna, względem
+		    której należy liczyć pochodną.  Przykładowo,
+		    procedura mogłaby dawać takie wyniki:
+		    <pre>		      &gt; (deriv '(* x y) 'x)
+		      y
+		      &gt; (deriv '(* (* x y) (+ x 3)) 'x)
+		      (+ (* x y) (* y (+ x 3)))
+		    </pre>
+		    Jak widać z drugiego przykładu, należy zadbać o
+		    upraszczanie otrzymanych przez różniczkowanie
+		    wyrażeń.
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

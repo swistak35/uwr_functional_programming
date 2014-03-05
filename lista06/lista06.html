@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <td>
+		    <b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		      Lista zadań nr 6</b> 
+		  </td>
+		</tr> 
+	    </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część I (na 21.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 1 (4p.)</h4>
+		    <i>Samefringe Problem.</i> Definiujemy typ danych
+		    do reprezentacji drzew binarnych przechowujących
+		    wartości w liściach:
+		    <blockquote>
+		      <tt>
+		      type 'a btree = Leaf of 'a 
+		                    | Node of 'a btree * 'a btree
+		      </tt>
+		    </blockquote>
+		    Dwa drzewa binarne typu <tt>t btree</tt> mają
+		    jednakowe korony (zakładamy, że obiekty
+		    typu <tt>t</tt> są porównywalne), jeśli listy
+		    utworzone przez odczytanie wartości w ich liściach
+		    od lewej do prawej są równe. Na przykład drzewa
+		    <blockquote>
+		      <tt>
+		      Node (Node (Leaf 1, 
+		                  Leaf 2),
+		            Leaf 3)
+		      </tt>
+		    </blockquote>		      
+		    i
+		    <blockquote>
+		      <tt>
+		      Node (Leaf 1, 
+		            Node (Leaf 2, 
+		                  Leaf 3))
+		      </tt>
+		    </blockquote>
+		    mają jednakowe korony, równe <tt>[1; 2; 3]</tt>.
+		    <ol>
+		      <li>
+			Napisz funkcję rozstrzygającą czy dwa drzewa
+			mają jednakowe korony, bazując bezpośrednio na
+			definicji i nie dbając o efektywność
+			rozwiązania.
+		      </li>
+		      <li>
+			Wykorzystując pojęcie odroczonego obliczenia,
+			napisz efektywną i czysto funkcyjną wersję
+			funkcji <tt>samefringe</tt>, tj. taką, która
+			przerywa obliczenia w momencie napotkania
+			pierwszej różnicy między koronami
+			drzew. Podpowiedź: należy odraczać
+			trawersowanie prawego poddrzewa.
+		      </li>
+		    </ol>
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część II (na 28.11.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 2 (4p.)</h4>  Definiujemy typ danych
+		    do reprezentacji drzew binarnych przechowujących
+		    wartości zarówno w węzłach jak i w liściach:
+		    <blockquote>
+		      <tt>
+		      type 'a btree = Leaf of 'a 
+		                    | Node of 'a btree * 'a * 'a btree
+		      </tt>
+		    </blockquote>
+		    <ol>
+		      <li> Napisz funkcję numerującą węzły i
+			liście drzewa binarnego w kolejności
+			przechodzenia go w głąb (preorder). Na
+			przykład, tak ponumerowaną wersją drzewa
+			<blockquote>
+			  <tt>Node (Node (Leaf 'a', 'b', Leaf 'c'), 'd', Leaf 'e')</tt>
+			</blockquote>
+			jest
+			<blockquote>
+			  <tt>Node (Node (Leaf 3, 2, Leaf 4), 1, Leaf 5)</tt>.
+			</blockquote>
+		      </li>		      
+		      <li> Napisz funkcję numerującą węzły i
+			liście drzewa binarnego w kolejności
+			przechodzenia go wszerz. Na przykład, tak
+			ponumerowaną wersją drzewa
+			<blockquote>
+			  <tt>Node (Node (Leaf 'a', 'b', Leaf 'c'), 'd', Leaf 'e')</tt>
+			</blockquote>
+			jest
+			<blockquote>
+			  <tt>Node (Node (Leaf 4, 2, Leaf 5), 1, Leaf 3)</tt>.
+			</blockquote>
+			Podpowiedź: lasy numeruje się łatwiej niż drzewa.
+		      </li>
+		    </ol>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 3 (4p.)</h4> Tablica funkcyjna to
+		    struktura danych, która podobnie jak tablica
+		    imperatywna, pozwala na swobodny dostęp do swoich
+		    składowych (poprzez ich indeksy w
+		    tablicy). Jednakże, w przeciwieństwie do tablicy
+		    imperatywnej, operacje modyfikujące składowe
+		    tablicy funkcyjnej nie nadpisują istniejącej
+		    tablicy, a tworzą jej kopię, przy czym oryginalna
+		    kopia nadal istnieje i może być używana w dalszych
+		    obliczeniach. Takie struktury sprawdzają się
+		    lepiej niż tablice imperatywne np. w algorytmach
+		    niedeterministycznych z nawrotami.
+		    <br><br>
+		    Rozważmy implementację tablic funkcyjnych za
+		    pomocą drzew binarnych postaci:
+		    <blockquote>
+		      <tt>
+		      type 'a btree = Leaf | Node of 'a btree * 'a * 'a btree
+		      </tt>
+		    </blockquote>
+		    Zakładamy przy tym, że drzewo reprezentuje tablicę
+		    indeksowaną liczbami całkowitymi od 1 do n, a
+		    ścieżka do składowej o indeksie k, wyznaczona jest
+		    przez serię dzieleń modulo 2, aż do osiagnięcia
+		    wartości 1, wg zasady: jeśli k mod 2 = 0, to
+		    wybieramy lewego syna, a w przeciwnym razie -
+		    prawego, a następnie poszukujemy elementu o
+		    indeksie k div 2. W przypadku drzew
+		    zbalansowanych, a z takimi mamy tu do czynienia,
+		    dostęp do k-tego elementu wymaga log k kroków.
+
+		    <br><br> Zdefiniuj typ danych <tt>'a array</tt>
+		    (wraz z drzewem warto przechowywać najwyższy
+		    indeks w tablicy) oraz następujące operacje na
+		    tablicach funkcyjnych:
+		    <ul>
+		      <li>
+			<tt>aempty : 'a array</tt>, tablica pusta;
+		      </li>
+		      <li>
+			<tt>asub : 'a array -&gt; int -&gt; 'a</tt>, pobranie składowej o zadanym indeksie;
+		      </li>
+		      <li>
+			<tt>aupdate : 'a array -&gt; int -&gt; 'a -&gt; 'a array</tt>, modyfikacja składowej o zadanym indeksie;
+		      </li>
+		      <li>
+			<tt>ahiext : 'a array -&gt; 'a -&gt; 'a array</tt>, rozszerzenie tablicy o jedną składową;
+		      </li>
+		      <li>
+			<tt>ahirem : 'a array -&gt; 'a array</tt>, usunięcie składowej o najwyższym indeksie.
+		      </li>
+		    </ul>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 4 (2p.)</h4>
+		    Chcemy w Ocamlu zdefiniować funkcję <tt>sprintf</tt> znaną z języka C, tak by np.
+		    <pre>		      sprintf "Ala ma %d kot%s." : int -&gt; string -&gt; string
+		    </pre>
+		    pozwalało zdefiniować funkcję
+		    <pre>		      fun n -&gt; sprintf "Ala ma %d kot%s." n (if n = 1 then "a" else if 1 &lt; n &amp; n &lt; 5 then "y" else "ów")
+		    </pre>
+		    Na pierwszy rzut oka wydaje się, że rozwiązanie
+		    tego zadania wymaga typów zależnych, ponieważ typ
+		    funkcji <tt>sprintf</tt> zależy od jej pierwszego
+		    argumentu. Okazuje się jednak, że polimorfizm
+		    parametryczny wystarczy.
+
+		    Dla uproszczenia załóżmy, że format nie jest
+		    zadany przez wartość typu <tt>string</tt> (nie
+		    chcemy zajmować się parsowaniem), ale przez
+		    konkatenację następujących dyrektyw formatujących:
+		    <ul>
+		      <li><tt>lit s</tt> - stała napisowa <tt>s</tt>
+		      </li><li><tt>eol</tt> - koniec wiersza
+		      </li><li><tt>inr</tt> - liczba typu <tt>int</tt>
+		      </li><li><tt>flt</tt> - liczba typu <tt>float</tt>
+		      </li><li><tt>str</tt> - napis typu <tt>string</tt>
+		    </li></ul>
+		    Zakładając, że operatorem konkatenacji dyrektyw
+		    jest <tt>++</tt>, powyższy przykład może być
+		    zapisany następująco:
+		    <pre>		      sprintf (lit "Ala ma " ++ inr ++ " kot" ++ str ++ lit ".") : int -&gt; string -&gt; string
+		    </pre>
+		    Zdefiniuj
+		    funkcje <tt>lit</tt>, <tt>eol</tt>, <tt>inr</tt>, <tt>flt</tt>, <tt>str</tt>, <tt>++</tt>
+		    oraz funkcję <tt>sprintf</tt>.
+
+		    Podpowiedź: dyrektywy powinny być funkcjami
+		    transformującymi kontynuacje, a
+		    operator <tt>++</tt> to zwyczajne złożenie takich
+		    funkcji. Na przykład <tt>inr</tt> powinien mieć
+		    typ <tt>(string -&gt; a) -&gt; string -&gt; (int -&gt; a)</tt>
+		    (argumentem ma być kontynuacja oczekująca napisu,
+		    ale o nieokreślonym typie odpowiedzi, a wynikiem
+		    ma być kontynuacja oczekująca napisu, a następnie
+		    liczby całkowitej). Podobnie, typem <tt>eol</tt>
+		    ma być <tt>(string -&gt; a) -&gt; string -&gt; a<tt>.
+		  </tt></tt></td>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 5 (6p.)</h4>
+		    Przeanalizuj interpreter Prologa zamieszczony <a href="http://ii.uni.wroc.pl/%7Edabi/courses/PF13/prolog.ml">tutaj</a>. 
+		    <ol>
+		      <li>Zmień definicję funkcji <code>run</code> (i
+		      tylko tej funkcji) tak by interpreter liczył na
+		      ile spsobów dany cel może być spełniony przy
+		      danym programie zamiast sprawdzać tylko czy może
+		      być spełniony. (W interpreterze pojawi się
+		      nieogonowe wywołanie -- czy potrafisz
+		      zmodyfikować cały interpreter, tak by je
+		      wyeliminować?)
+		      </li><li>Rozważmy typ danych do reprezentowania
+		      wyrażeń regularnych:
+			<pre>			  type regexp = 
+			    | Atom of char
+			    | And of regexp * regexp  (*  r<sub>1</sub>r<sub>2</sub>     *)
+			    | Or of regexp * regexp   (*  r<sub>1</sub> | r<sub>2</sub>  *)
+			    | Star of regexp          (*  r<sup>*</sup>  *)
+			</pre>
+			Bazując na modelu obliczeń z nawrotami przy
+			użyciu kontynuacji sukcesu oraz kontynuacji
+			porażki, zaprezentowanym na przykładzie
+			iterpretera Prologa, napisz funkcje
+			<pre>			  match_regexp : regexp -&gt; char list -&gt; (char list -&gt; (unit -&gt; 'a) -&gt; 'a) -&gt; (unit -&gt; 'a) -&gt; 'a
+			</pre>
+		        oraz
+			<pre>			  run : regexp -&gt; char list -&gt; bool
+			</pre>
+			które dla danego wyrażenia regularnego
+			implementują niedeterministyczny automat
+			rozpoznający język opisany przez to wyrażenie.
+		  </li></ol></td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

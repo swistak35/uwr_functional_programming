@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody><tr>
+	<td>
+	  <table cellpadding="20">
+	    <tbody><tr>
+	      <td>
+		<b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		  Lista zadań nr 2</b> 
+	      </td>
+	    </tr> 
+	  </tbody></table>
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  <table cellpadding="20">
+	    <tbody><tr>
+	      <th>
+		Część I (na 17.10.2013)
+	      </th>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 1 (2p.)</h4>  Napisz funkcję znajdującą
+		wszystkie podlisty listy zadanej jako argument. Czy
+		umiesz napisać tę funkcję bez użycia operacji
+		konkatenacji list?</td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 2 (2p.)</h4>  Napisz dwie wersje funkcji (w tym jedną za
+		pomoca rekursji ogonowej), która oblicza n-ty wyraz ciągu
+		zdefiniowanego wzorem:
+		<ul>
+		  <li> a<sub>0</sub> = 1
+		  </li><li> a<sub>1</sub> = 2
+		  </li><li> a<sub>n</sub> = 2 * a<sub>n-2</sub> - a<sub>n-1</sub> + 1 dla n&gt;1
+		</li></ul>
+		a następnie porównaj ich działanie dla dużych n.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 3 (2p.)</h4>  Napisz dwie wersje funkcji
+		(w tym jedną za pomocą rekursji ogonowej), która dla
+		zadanej listy l oraz funkcji f zwraca listę będącą
+		odwróceniem listy l przetworzonej przez działanie
+		funkcji f.
+	      </td>
+	    </tr>
+	  </tbody></table>
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  <table cellpadding="20">
+	    <tbody><tr>
+	      <th colspan="2">
+		Część II (na 24.10.2013)
+	      </th>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 4 (3p.)</h4> 
+		<ol>
+		  <li> Napisz funkcję merge, która łączy dwie listy
+		    posortowane rosnąco w pewnym porządku &lt;= tak, by
+		    wynik działania funkcji był także listą
+		    posortowaną rosnąco w tym samym
+		    porządku. Argumentami funkcji merge powinny być:
+		    funkcja cmp typu 'a -&gt; 'a -&gt; bool (zakładamy, że
+		    cmp a b = true wtw a&lt;=b), i dwie listy elementów
+		    typu 'a. Przykład: merge (&lt;=) [1;2;5] [3;4;5]
+		    utworzy listę [1;2;3;4;5;5].
+		</li><li> Zapisz tę funkcję używając rekursji ogonowej, a
+		następnie porównaj działanie obu funkcji na
+		odpowiednich przykładach.
+		</li><li> Wykorzystaj funkcję merge do napisania funkcji
+		  sortowania przez scalanie.
+		</li></ol>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 5 (2p.)</h4>  Napisz funkcję zwracającą
+		listę wszystkich permutacji zadanej listy.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<h4>Zadanie 6 (2p.)</h4>  Napisz funkcję generującą
+		wszystkie sufiksy danej listy. Na przykład dla
+		listy [1;2;3] Twoja funkcja powinna zwrócić
+		listę [[1; 2; 3]; [2; 3]; [3]]. Następnie,
+		napisz funkcję generującą wszystkie prefiksy danej
+		listy. Na przykład dla listy [1; 2; 3] Twoja
+		funkcja powinna zwrócić listę [[1]; [1; 2]; [1; 2;
+		3]]?
+	      </td>
+	    </tr>
+	  </tbody></table>
+	</td>
+      </tr>
+    </tbody></table>
+  
+
+</body></html>

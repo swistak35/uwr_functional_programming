@@ -1,0 +1,8 @@
+# Testing unary minus
+# It should print -3, -4.
+begin
+	var x := -3;
+	var y := -x + -7;
+	write x;
+	write y;
+end;

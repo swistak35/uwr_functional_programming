@@ -1,0 +1,12 @@
+# Testing precedence of operators 'and', 'not'
+# It should print 1.
+begin
+	var x := 1;
+	var y := 2;
+	var ok := 1;
+	var notok := 0;
+	if !x = 0 & y = 0 then
+		write notok;
+	else
+		write ok;
+end

@@ -1,0 +1,22 @@
+# Exceptions in procedures
+# Program should output 1, 1, 1, 1, 1.
+begin
+	var x0 	:= 0;
+	var x1 	:= 1;
+	var xn 	:= 4;
+	proc excRaiser() is begin
+		write x1;
+		raise SimpleException;
+		write x0;
+	end
+
+	write x1;
+	try {
+		write x1;
+		call excRaiser();
+		write x0;
+	} rescue SimpleException with {
+		write x1;
+	}
+	write x1;
+end

@@ -1,0 +1,16 @@
+# Testing recursion
+# It should print: 3.
+begin
+	var x1 := 1;
+	proc p() is begin
+		var x1 := 2;
+		proc p() is begin
+			var x1 := 3;
+			write x1;
+		end
+
+		call p();
+	end
+
+	call p();
+end

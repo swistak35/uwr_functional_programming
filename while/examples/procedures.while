@@ -1,0 +1,22 @@
+# Testing procedures.
+# It should print 1, 7, 7, 9, 9.
+begin
+	var x := 5;
+	var y := 7;
+	proc test1() is begin
+		var x := 1;
+		write x;
+	end
+
+	proc testn(n) is begin
+		var x := n;
+		write x;
+		write n;
+	end
+
+	call test1();
+	# call test1(1);
+	call testn(y);
+	call testn(9);
+	# call testn();
+end

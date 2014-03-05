@@ -1,0 +1,18 @@
+# Garbage collector example.
+# If it doesn't fail, it works - in this program we are declaring 1001 variables
+#    (1 "i" and 1000 "x"), and there is limit for 1000.
+begin
+	var i := 1;
+	proc p() is begin
+		var x := 1;
+		skip;
+	end
+
+	while i <= 1000 do begin
+		call p();
+		i := i + 1;
+	end
+
+	write i;
+end
+

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+    <title>Programowanie funkcyjne</title>    
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <style type="text/css">
+      body { font-family: sans-serif }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+	<tr>
+	  <td>
+	    <table cellpadding="20">
+	      <tbody>
+		<tr>
+		  <td>
+		    <b>Programowanie funkcyjne, II UWr, 2013/14<br>
+		      Lista zadań nr 8</b> 
+		  </td>
+		</tr> 
+	    </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część I (na 05.12.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 1 (6p.)</h4>  Rozważmy sygnaturę dla
+		    funkcyjnych kolejek priorytetowych:
+		    <pre>module type PQUEUE =
+sig
+  type priority
+  type 'a t
+    
+  exception EmptyPQueue
+  
+  val empty : 'a t
+  val insert : 'a t -&gt; priority -&gt; 'a -&gt; 'a t
+  val remove : 'a t -&gt; priority * 'a * 'a t
+end
+		    </pre>
+		    <ol> 
+		      <li>Zdefiniuj moduł <tt>PQueue : PQUEUE</tt>,
+			przyjmując typ <tt>priority =
+			int</tt>. Reprezentacja kolejki może być
+			dowolna.
+		      </li><li>Wykorzystaj moduł <tt>PQueue</tt> do
+			napisania funkcji sortowania list liczb
+			typu <tt>int</tt>.
+		      </li><li>Uogólnij rozwiązanie punktów 1 i 2
+			definiując funktor, który dla zadanego modułu
+			<tt>OrdType : ORDTYPE</tt> zwraca moduł o
+			sygnaturze <tt>PQUEUE</tt>, gdzie
+			<pre>module type ORDTYPE =
+sig
+  type t
+  val compare : t -&gt; t -&gt; int
+end
+			</pre>
+			Zmodyfikuj odpowiednio funkcję sortowania list
+			z p. 2 i przetestuj ją.
+		  </li></ol></td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <table cellpadding="20" width="100%">
+	      <tbody>
+		<tr>
+		  <th>
+		    Część II (na 12.12.2013)
+		  </th>
+		</tr>
+		<tr>
+		  <td>
+		    <h4>Zadanie 2 (10p.)</h4>  Chcemy stworzyć
+		    sygnaturę dla funkcyjnych reprezentacji grafów
+		    skierowanych, sparametryzowanych przez
+		    abstrakcyjne typy wierzchołków i krawędzi.
+		    
+		    W tym celu tworzymy sygnaturę dla typu
+		    wierzchołków:
+		    <pre>module type VERTEX =
+sig
+  type t
+  type label
+
+  val equal : t -&gt; t -&gt; bool
+  val create : label -&gt; t
+  val label : t -&gt; label  
+end
+		    </pre>
+		    gdzie typ <tt>t</tt> reprezentuje abstrakcyjny typ
+		    wierzchołków, typ <tt>label</tt> reprezentuje
+		    abstrakcyjny typ etykiet wierzchołków, a
+		    funkcja <tt>equal</tt> pozwala porównywać
+		    wierzchołki. Funkcja <tt>create</tt> tworzy nowy
+		    wierzchołek na podstawie etykiety, a
+		    funkcja <tt>label</tt> zwraca etykietę
+		    wierzchołka.
+		    <ol>
+		      <li>Napisz analogiczną sygnaturę dla typu
+			krawędzi przyjmując, że krawędzie również mogą
+			być etykietowane, porównywane, oraz dla każdej
+			krawędzi powinna istnieć możliwość wyznaczenia
+			jej wierzchołka początkowego i końcowego.</li>
+		      <li>Rozważmy następnie sygnaturę dla grafów
+		      skierowanych:
+			<pre>module type GRAPH =
+  sig
+  (* typ reprezentacji grafu *)
+  type t
+
+  module V : VERTEX
+  type vertex = V.t
+
+  module E : EDGE with type vertex = vertex
+
+  type edge = E.t
+
+  (* funkcje wyszukiwania *)
+  val mem_v : t -&gt; vertex -&gt; bool
+  val mem_e : t -&gt; edge -&gt; bool
+  val mem_e_v : t -&gt; vertex -&gt; vertex -&gt; bool
+  val find_e : t -&gt; vertex -&gt; vertex -&gt; edge
+  val succ : t -&gt; vertex -&gt; vertex list
+  val pred : t -&gt; vertex -&gt; vertex list
+  val succ_e : t -&gt; vertex -&gt; edge list
+  val pred_e : t -&gt; vertex -&gt; edge list
+
+  (* funkcje modyfikacji *) 
+  val empty : t
+  val add_e : t -&gt; edge -&gt; t
+  val add_v : t -&gt; vertex -&gt; t
+  val rem_e : t -&gt; edge -&gt; t
+  val rem_v : t -&gt; vertex -&gt; t
+
+  (* iteratory *)
+  val fold_v : (vertex -&gt; 'a -&gt; 'a) -&gt; t -&gt; 'a -&gt; 'a
+  val fold_e : (edge -&gt; 'a -&gt; 'a) -&gt; t -&gt; 'a -&gt; 'a
+end
+			</pre>
+			Zaimplementuj moduł <tt>Graph</tt> zgodny z
+			sygnaturą <tt>GRAPH</tt> dla dowolnie wybranej
+			reprezentacji funkcyjnej
+			grafu. (Funkcje <tt>succ</tt> i <tt>pred</tt>
+			wyznaczają odpowiednio listę następników i
+			poprzedników danego wierzchołka, a
+			funkcje <tt>succ_e</tt> i <tt>pred_e</tt>
+			wyznaczają odpowiednio listę krawędzi
+			wychodzących i wchodzących do danego
+			wierzchołka.)
+		      </li>
+		      <li>Przetestuj działanie swojej implementacji na
+			przykładowych danych (w tym celu zaimplementuj
+			również moduły <tt>Vertex</tt> i <tt>Edge</tt>
+			zgodne z odpowiednimi sygnaturami).
+		      </li>
+		      <li>Napisz funktor, który przyjmując jako
+			argumenty moduły <tt>V:VERTEX</tt>
+			oraz <tt>E:EDGE</tt> zwraca moduł zgodny z
+			sygnaturą <tt>GRAPH</tt>.
+		      </li>
+		      <li>
+			Korzystając z sygnatury <tt>GRAPH</tt> napisz
+			funkcje przechodzenia grafu w głąb i
+			wszerz. Przetestuj te funkcje na swojej
+			implementacji.
+		      </li>
+		    </ol>
+  		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  
+
+</body></html>

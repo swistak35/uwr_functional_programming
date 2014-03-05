@@ -1,0 +1,16 @@
+# Testing reporting exception
+# It should print 1, 1.
+# and report that program finished with raised SimpleException.
+begin
+	var x0 	:= 0;
+	var x1 	:= 1;
+	var xn 	:= 2;
+
+	write x1;
+	try {
+		write x1;
+		raise SimpleException;
+		write x0;
+	}
+	write xn;
+end
